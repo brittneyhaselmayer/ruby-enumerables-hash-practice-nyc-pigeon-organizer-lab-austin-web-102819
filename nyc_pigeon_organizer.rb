@@ -1,28 +1,1 @@
-def nyc_pigeon_organizer(data)
-
-  names = []
-  final_hash = {}
-
-  data.each do |attribute, items|
-    items.each do |feature, arr|
-      arr.each do |name|
-        names << name if !names.include?(name)
-      end
-    end
-  end
-  
-  names.each do |called_by|
-    final_hash[called_by] = Hash.new {|k, v| k[v] = []}
-    data.each do |attribute, items|
-      final_hash[called_by][attribute]
-      items.each do |feature, arr|
-        arr.each do |name|
-          final_hash[name][attribute] << feature.to_s if name == called_by
-        end
-      end
-    end
-  end
-  
-  final_hash
-
-end
+def nyc_pigeon_organizer(data) new_hash={}  data.each do |key, value|    value.each do |new_value, names|      names.each do |name|        if !new_hash[name]          new_hash[name] = {}        end        if !new_hash[name][key]          new_hash[name][key] = []        end        new_hash[name][key] << new_value.to_s      end    end  end  new_hashend	
